@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: grey;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: lightgreen;
+    font-size: 24px;
+}
