@@ -16,6 +16,23 @@ app.set("view engine", "ejs");
 
 app.use(express.static("static"));
 
+app.get('/error',async function (request, response, next){
+
+  return next(createError(500));
+});
+
+app.get('/:url',async function (request, response, next){
+
+  return next(createError(501));
+});
+
+app.get('/status/:url',async function (request, response, next){
+
+  return next(createError(501));
+});
+
+
+
 app.get("/random/:nb", async function (request, response, next) {
   const length = Number.parseInt(request.params.nb, 10);
   if (Number.isNaN(length)) {
