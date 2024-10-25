@@ -60,27 +60,39 @@ async function requestListener(_request, response) {
     response.writeHead(200);
     response.end(contents);
   } catch (error) {
-    console.error(error);
-    response.writeHead(500, { "Content-Type": "text/plain" });
-    response.end("Internal Server Error: index.html not found");
+    response.setHeader("Content-Type", "text/plain");
+    response.writeHead(500);
+    response.end("Erreur interne du serveur : fichier introuvable.");
+    console.error("Erreur 500:", error.message);
   }
 }
 
+
+// Création du serveur avec la fonction requestListener comme gestionnaire de requêtes
+
 const server = http.createServer(requestListener);
+
+// Le serveur écoute les requêtes sur le port et l'hôte spécifiés
+
 server.listen(port, host, () => {
   console.log(`Server is running on http://${host}:${port}`);
+  console.log("NODE_ENV =", process.env.NODE_ENV);  // Affiche la variable d'environnement NODE_ENV
 });
 
 # Mode Developpement
 
 # Question 1.6 indiquer ce que cette commande a modifié dans votre projet.
 
-Ces commandes ont ajouté 2 modules à mon projet exacement au fichier :
+Ces commandes ont ajouté 2 modules à mon projet exacement au fichier package.json :
 
 - cross-env, qui gère les variables d'environnement
 - nodemon, un outil de développement
 
+# Question 1.7 quelles sont les différences entre les scripts http-dev et http-prod ?
+
+La différence entre les scripts http-dev et http-prod est que http-dev utilise nodemon pour recharger automatiquement le serveur quand il y a des modifications, alors que http-prod utilise node pour exécuter le serveur, donc il n'y a pas de rechargement automatique.
 
 
+# Gestion manuelle des routes
 
-
+#
