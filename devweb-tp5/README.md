@@ -203,11 +203,11 @@ X-Powered-By: Express
 
 
 
+# Question 2.4 quand l’événement listening est-il déclenché ?
 
+L'événement listening est déclenché après que le serveur a été démarré et est prêt à traiter des requêtes.
 
-
-
-
+# Ajout de middlewares
 
 
 
