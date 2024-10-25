@@ -4,32 +4,43 @@ import fs from "node:fs/promises"; // Import de fs avec promesses pour lire les 
 const host = "localhost";
 const port = 8000;
 
-// Fonction de gestion des requêtes asynchrone
-async function requestListener(_request, response) {
+async function requestListener(request, response) {
+  response.setHeader("Content-Type", "text/html");
   try {
-    // Lecture du contenu du fichier index.html en UTF-8
-    const contents = await fs.readFile("index.html", "utf8");
+    const urlParts = request.url.split("/");
+    const path = urlParts[1]; // Récupérer la partie de chemin
+    const nb = urlParts[2]; // Récupérer le paramètre nb
 
-    // Définit le type de contenu de la réponse en HTML
-    response.setHeader("Content-Type", "text/html");
+    switch (path) {
+      case "index.html":
+      case "": // Traiter / et /index.html de la même manière
+        const contents = await fs.readFile("index.html", "utf8");
+        response.writeHead(200);
+        return response.end(contents);
 
-    // Envoie un statut 200 (succès)
-    response.writeHead(200);
+      case "random.html":
+        response.writeHead(200);
+        return response.end(`<html><p>${Math.floor(100 * Math.random())}</p></html>`);
+      
+      case "random": // Ajouter la route pour /random/:nb
+        const count = parseInt(nb, 10); // Convertir nb en entier
+        if (isNaN(count) || count < 1) {
+          response.writeHead(400); // Mauvaise requête
+          return response.end(`<html><p>400: BAD REQUEST - Please provide a valid number.</p></html>`);
+        }
+        
+        const randomNumbers = Array.from({ length: count }, () => Math.floor(Math.random() * 100)).join(", ");
+        response.writeHead(200);
+        return response.end(`<html><p>Random Numbers: ${randomNumbers}</p></html>`);
 
-    // Envoie le contenu du fichier en réponse
-    response.end(contents);
+      default:
+        response.writeHead(404);
+        return response.end(`<html><p>404: NOT FOUND</p></html>`);
+    }
   } catch (error) {
-    // En cas d'erreur, définit le type de contenu en texte brut
-    response.setHeader("Content-Type", "text/plain");
-
-    // Envoie un statut 500 (erreur interne du serveur)
+    console.error(error);
     response.writeHead(500);
-
-    // Envoie un message d'erreur simple en réponse
-    response.end("Erreur 500, interne du serveur : fichier introuvable.");
-
-    // Affiche l'erreur dans la console pour le débogage
-    console.error("Erreur 500:", error.message);
+    return response.end(`<html><p>500: INTERNAL SERVER ERROR</p></html>`);
   }
 }
 

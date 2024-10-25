@@ -95,4 +95,58 @@ La différence entre les scripts http-dev et http-prod est que http-dev utilise 
 
 # Gestion manuelle des routes
 
-#
+# Question 1.8 donner les codes HTTP reçus par votre navigateur pour chacune des quatre pages précédentes.
+
+URL : http://localhost:8000/index.html
+
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/html
+Date: Fri, 25 Oct 2024 10:14:59 GMT
+Keep-Alive: timeout=5
+Transfer-Encoding: Identity
+
+----------------------------------
+
+URL : http://localhost:8000/random.html
+
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/html
+Date: Fri, 25 Oct 2024 10:16:03 GMT
+Keep-Alive: timeout=5
+Transfer-Encoding: Identity
+
+----------------------------------
+
+URL : http://localhost:8000/
+
+HTTP/1.1 404 Not Found
+Connection: keep-alive
+Content-Type: text/html
+Date: Fri, 25 Oct 2024 10:16:36 GMT
+Keep-Alive: timeout=5
+Transfer-Encoding: Identity
+
+----------------------------------
+
+URL : http://localhost:8000/dont-exist
+
+HTTP/1.1 404 Not Found
+Connection: keep-alive
+Content-Type: text/html
+Date: Fri, 25 Oct 2024 10:17:17 GMT
+Keep-Alive: timeout=5
+Transfer-Encoding: Identity
+
+
+
+# Partie 2 : framework Express
+
+
+
+
+
+
+
+
