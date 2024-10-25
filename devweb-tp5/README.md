@@ -144,6 +144,71 @@ Transfer-Encoding: Identity
 # Partie 2 : framework Express
 
 
+# Question 2.1 donner les URL des documentations de chacun des modules installés par la commande précédente.
+
+
+
+Voici les URLs des documentations des modules installés :
+
+- Express : https://expressjs.com/en/4x/api.html
+- http-errors : https://github.com/jshttp/http-errors#readme
+- loglevel : https://github.com/pimterry/loglevel#readme
+- morgan : https://github.com/expressjs/morgan#readme
+
+# Question 2.2 vérifier que les trois routes fonctionnent.
+
+Les 3 route fonctionnent  :
+
+
+URL: http://localhost:8000/index.html
+État: 200 OK
+Source: Réseau
+Adresse: 127.0.0.1:8000
+
+URL: http://localhost:8000/random/5
+État: 200 OK
+Source: Réseau
+Adresse: 127.0.0.1:8000
+
+URL: http://localhost:8000/dont-exist
+État: 404 Not Found
+Source: Réseau
+Adresse: 127.0.0.1:8000
+
+
+# Question 2.3 lister les en-têtes des réponses fournies par Express. Lesquelles sont nouvelles par rapport au serveur HTTP ?
+
+
+Réponse
+HTTP/1.1 304 Not Modified
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Connection: keep-alive
+Date: Fri, 25 Oct 2024 12:29:05 GMT
+ETag: W/"c1-192c399620a"
+Keep-Alive: timeout=5
+Last-Modified: Fri, 25 Oct 2024 12:14:22 GMT
+X-Powered-By: Express
+
+
+Réponse
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 81
+Content-Type: text/html; charset=utf-8
+Date: Fri, 25 Oct 2024 12:30:14 GMT
+ETag: W/"51-7wztDAsjNv3qTJEfK7hYp4PpuMk"
+Keep-Alive: timeout=5
+X-Powered-By: Express
+
+
+
+
+
+
+
+
+
 
 
 
