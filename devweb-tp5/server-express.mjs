@@ -12,6 +12,11 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url); // Obtenir le chemin du fichier courant
 const __dirname = path.dirname(__filename); // Définir __dirname
 
+
+// Définir le moteur de vue à utiliser EJS
+app.set("view engine", "ejs"); // Ajout de cette ligne
+
+
 // Middleware pour afficher les en-têtes de réponse
 app.use((req, res, next) => {
     const originalSend = res.send; // Sauvegarder la méthode send originale
@@ -60,5 +65,7 @@ server.on("listening", () =>
         `HTTP listening on http://${server.address().address}:${server.address().port} with mode '${process.env.NODE_ENV}'`,
     ),
 );
+
+
 
 console.info(`File ${import.meta.url} executed.`);

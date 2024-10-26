@@ -209,6 +209,25 @@ L'événement listening est déclenché après que le serveur a été démarré 
 
 # Ajout de middlewares
 
+# Question 2.5 indiquer quelle est l’option (activée par défaut) qui redirige / vers /index.html ?
+
+L'option qui redirige automatiquement les requêtes vers / vers /index.html dans une application Express est généralement la méthode express.static()
+
+# Question 2.6 visiter la page d’accueil puis rafraichir (Ctrl+R) et ensuite forcer le rafraichissement (Ctrl+Shift+R). Quels sont les codes HTTP sur le fichier style.css ? Justifier.
+
+Sur mon Mac, après avoir visité la page d’accueil, j’ai d’abord rafraîchi la page avec Command + R, puis j’ai forcé le rafraîchissement avec Command + Shift + R.
+
+Premier Chargement : Lors de la première visite, le serveur a renvoyé le fichier style.css avec le code HTTP 200 OK, indiquant que la ressource a été trouvée et servie correctement.
+
+Rafraîchissement Normal (Command + R) : Lors du rafraîchissement normal, si le fichier était déjà en cache et n’avait pas été modifié, j’ai obtenu un code HTTP 304 Not Modified, ce qui signifie que le fichier n’avait pas changé depuis la dernière demande.
+
+Rafraîchissement Forcé (Command + Shift + R) : En forçant le rafraîchissement, le navigateur a ignoré le cache et a demandé à nouveau style.css, ce qui a renvoyé un code HTTP 200 OK, confirmant que le fichier a été servi directement par le serveur.
+
+Ainsi, les codes HTTP reçus pour le fichier style.css sont 200 OK et 304 Not Modified, selon que le fichier est servi depuis le cache ou non.
+
+
+
+
 
 
 
