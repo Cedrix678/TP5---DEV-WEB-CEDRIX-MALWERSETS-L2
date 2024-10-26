@@ -68,6 +68,19 @@ app.use((err, req, res, next) => {
     res.status(500).send('Quelque chose a mal tourné !');
 });
 
+app.use((request, response, next) => {
+  console.debug(`default route handler : ${request.url}`);
+  return next(createError(404));
+});
+
+app.use((error, _request, response, _next) => {
+  console.debug(`default error handler: ${error}`);
+  const status = error.status ?? 500;
+  const stack = app.get("env") === "development" ? error.stack : "";
+  const result = { code: status, message: error.message, stack };
+  return response.render("error", result);
+});
+
 // Démarrer le serveur
 const server = app.listen(port, host);
 

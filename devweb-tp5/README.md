@@ -225,6 +225,14 @@ Rafraîchissement Forcé (Command + Shift + R) : En forçant le rafraîchissemen
 
 Ainsi, les codes HTTP reçus pour le fichier style.css sont 200 OK et 304 Not Modified, selon que le fichier est servi depuis le cache ou non.
 
+# Rendu avec EJS
+
+# Question 2.7 vérifier que l’affichage change bien entre le mode production et le mode development.
+
+Modes :
+Développement : Affiche des erreurs détaillées (y compris la pile d'erreurs).
+Production : Affiche des messages d'erreur génériques sans détails sensibles.
+
 
 
 
