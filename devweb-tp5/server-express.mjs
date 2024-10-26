@@ -1,7 +1,10 @@
+import createError from 'http-errors';
 import express from "express";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url"; // Importer fileURLToPath
+
+
 
 const host = "localhost";
 const port = 8000;
@@ -43,13 +46,21 @@ app.get(["/", "/index.html"], (request, response) => {
 });
 
 // Route pour générer des nombres aléatoires
-app.get("/random/:nb", (request, response) => {
-    const length = parseInt(request.params.nb, 10); // Convertir en nombre entier
-    const contents = Array.from({ length })
-        .map(() => `<li>${Math.floor(100 * Math.random())}</li>`)
-        .join("\n");
-    return response.send(`<html><ul>${contents}</ul></html>`);
+
+app.get("/random/:nb", (request, response, next) => {
+  const length = Number.parseInt(request.params.nb, 10); // Convertir en nombre entier
+
+  // Vérification si length n'est pas un nombre
+  if (Number.isNaN(length)) {
+      return next(createError(400, 'Le paramètre doit être un nombre')); // Produire une erreur 400
+  }
+
+  // Générer des nombres aléatoires si length est valide
+  const numbers = Array.from({ length }, () => Math.floor(100 * Math.random()));
+  const welcome = "Bienvenue sur la page des nombres aléatoires"; // Message de bienvenue
+  return response.render("random", { numbers, welcome }); // Rendre la vue
 });
+
 
 // Gestion des erreurs
 app.use((err, req, res, next) => {
